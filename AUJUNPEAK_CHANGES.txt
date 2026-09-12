@@ -1,0 +1,11 @@
+Aujunpeak VN - cập nhật giao diện
+
+- Bỏ onboarding 4 bước; app vào thẳng luồng chính/kích hoạt key.
+- Đổi toàn bộ branding hiển thị chính sang Aujunpeak VN.
+- Thay AppIcon/Logo cũ bằng logo Aujunpeak.
+- Bỏ nút Terminal khỏi Home.
+- Settings chỉ còn chế độ System/Sáng/Tối và thông tin Admin Hà Văn Huấn + Zalo.
+- API app trỏ tới http://103.140.249.74:8082/api và bật ATS cho HTTP.
+- Function 01 gắn sẵn package Bụng.3105; Function 02 gắn sẵn package Cổ.3105.
+- Khi bật/tắt Function 01/02, package tương ứng được nạp/gỡ trong Documents/AujunpeakPatchProfiles của chính Aujunpeak VN.
+- Không tự động ghi package vào dữ liệu/container của ứng dụng bên thứ ba.

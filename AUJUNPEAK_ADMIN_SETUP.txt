@@ -1,0 +1,34 @@
+AUJUNPEAK VN - APP + ADMIN SERVER
+
+APP API URL hiện tại:
+http://103.140.249.74:8082/api
+
+CÀI SERVER:
+1. Tạo MySQL database và user.
+2. Trong folder aujunpeak-admin, copy config.example.php thành config.php.
+3. Điền DB host/name/user/pass vào config.php.
+4. Upload folder aujunpeak-admin vào public_html/aujunpeak-admin.
+5. Truy cập http://103.140.249.74:8082/setup.php
+6. Tạo tài khoản Admin.
+7. Đăng nhập /aujunpeak-admin/login.php.
+
+APP:
+- Khi chưa có key: bắt buộc hiện modal nhập key.
+- Activate gọi /api/activate.php.
+- Key bắt đầu tính hạn đúng từ lần activate đầu tiên.
+- Server giới hạn số thiết bị theo từng key.
+- App kiểm tra lại status khi active lại.
+- Tab Info hiển thị key, active time, expiry, max devices, device count, Device ID, trạng thái server.
+- Tab Function tải danh sách switch do Admin tạo.
+- Admin có thể thêm/sửa/xóa switch và đổi SF Symbol icon.
+- Admin có thể disable switch để app khóa switch đó.
+
+ADMIN:
+- Tạo/edit/revoke/delete key.
+- Reset thiết bị.
+- Reset activation để key bắt đầu lại khi kích hoạt lần kế.
+- Xem từng thiết bị đang dùng từng key và gỡ riêng thiết bị.
+- Tạo/edit/xóa/bật/tắt switch từ server.
+
+LƯU Ý:
+Remote switch trong bản này quản lý trạng thái/cấu hình của chính Aujunpeak VN. Không có chức năng server tự ghi patch vào container của ứng dụng bên thứ ba.
