@@ -10,6 +10,15 @@ enum AppTheme {
                 : UIColor(red: 0.85, green: 0.42, blue: 0.20, alpha: 1.00)
         }
     )
+    // Aujunpeak visual theme compatibility. These values were present in the
+    // previous Aujunpeak UI and are required by the merged overlay views.
+    static let secondaryAccent = Color(red: 0.28, green: 0.78, blue: 0.96)
+    static let hotPink = Color(red: 0.96, green: 0.32, blue: 0.40)
+    static let darkCanvas = Color(red: 0.035, green: 0.035, blue: 0.075)
+    static let panel = Color(red: 0.06, green: 0.07, blue: 0.11).opacity(0.92)
+    static let panelBorder = Color.white.opacity(0.14)
+    static let contentMaxWidth: CGFloat = 860
+    static let compactPageInset: CGFloat = 14
     static let pageBackground = Color(uiColor: .systemBackground)
     static let consoleBackground = Color(uiColor: .secondarySystemBackground)
     static let pageInset: CGFloat = 16

@@ -133,7 +133,7 @@ struct ContentView: View {
     }
 
     @ViewBuilder
-    private func sectionContent(_ section: AppSection) {
+    private func sectionContent(_ section: AppSection) -> some View {
         switch section {
         case .home:
             DashboardView(
