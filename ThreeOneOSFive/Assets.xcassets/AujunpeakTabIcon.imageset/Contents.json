@@ -1,0 +1,23 @@
+{
+  "images": [
+    {
+      "filename": "AujunpeakTabIcon.png",
+      "idiom": "universal",
+      "scale": "1x"
+    },
+    {
+      "filename": "AujunpeakTabIcon@2x.png",
+      "idiom": "universal",
+      "scale": "2x"
+    },
+    {
+      "filename": "AujunpeakTabIcon@3x.png",
+      "idiom": "universal",
+      "scale": "3x"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}
