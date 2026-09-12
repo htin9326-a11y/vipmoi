@@ -1021,21 +1021,8 @@ struct AppUtilityToolbar: ToolbarContent {
 
     var body: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            Menu {
-                Button(action: onOpenSettings) {
-                    Label(
-                        language.text("settings.title"),
-                        systemImage: "gearshape"
-                    )
-                }
-                Button(action: onOpenLogs) {
-                    Label(
-                        language.text("accessibility.open_logs"),
-                        systemImage: "apple.terminal"
-                    )
-                }
-            } label: {
-                Image(systemName: "gearshape")
+            Button(action: onOpenSettings) {
+                Image(systemName: "gearshape.fill")
             }
             .accessibilityLabel(language.text("accessibility.open_settings"))
         }

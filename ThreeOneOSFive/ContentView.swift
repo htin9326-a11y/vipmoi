@@ -12,38 +12,13 @@ struct ContentView: View {
     private var developerModeEnabled = false
     @State private var tabNavigation: AppTabNavigationState
     @State private var showSettings = false
-    @State private var showLogs = false
     @AppStorage("feature.cleaner.enabled") private var cleanerEnabled = false
     @AppStorage("feature.wallpapers.enabled") private var wallpapersEnabled = false
     @AppStorage("aujunpeak.selected.game") private var selectedGameKey = "freefire"
     @State private var sideMenuExpanded = false
 
     init() {
-#if targetEnvironment(simulator)
-        let arguments = ProcessInfo.processInfo.arguments
-        let initialTab: Int
-        if arguments.contains("--simulate-new-tab") {
-            initialTab = 1
-        } else if arguments.contains("--simulate-sources-tab") {
-            initialTab = 2
-        } else if arguments.contains("--simulate-installed-tab")
-                    || arguments.contains("--simulate-patch-tab")
-                    || arguments.contains("--simulate-wallpaper-tab") {
-            initialTab = 3
-        } else if arguments.contains("--simulate-files-tab") {
-            initialTab = 4
-        } else if arguments.contains("--simulate-search-tab") {
-            initialTab = 5
-        } else {
-            initialTab = 0
-        }
-        _tabNavigation = State(initialValue: AppTabNavigationState(selectedTab: initialTab))
-        _showSettings = State(
-            initialValue: arguments.contains("--simulate-settings")
-        )
-#else
         _tabNavigation = State(initialValue: AppTabNavigationState())
-#endif
     }
 
     var body: some View {
@@ -69,7 +44,6 @@ struct ContentView: View {
             tabNavigation.reconcileSelection(with: featureVisibility)
         }
         .sheet(isPresented: $showSettings) { SettingsView() }
-        .sheet(isPresented: $showLogs) { LogView() }
         .patchStorePresentation(patchStore)
         .repositoryStorePresentation(repositoryStore, patchStore: patchStore)
     }
@@ -123,7 +97,7 @@ struct ContentView: View {
                     )
                 }
             }
-            .navigationTitle("Aujunpeak VN")
+            .navigationTitle("Aujunpeak")
             .navigationSplitViewColumnWidth(min: 210, ideal: 240, max: 300)
         } detail: {
             sectionContent(selectedVisibleSection)
@@ -145,21 +119,11 @@ struct ContentView: View {
                     selectedGameKey = gameKey
                 }
             )
-        case .new:
-            RepositoryNewView(
-                onOpenSettings: openSettings,
-                onOpenLogs: openLogs
-            )
-        case .sources:
-            RepositorySourcesView(
-                onOpenSettings: openSettings,
-                onOpenLogs: openLogs
-            )
         case .installed:
             ZStack {
                 PatchProjectsView(
                     onOpenSettings: openSettings,
-                    onOpenLogs: openLogs
+                    onOpenLogs: {}
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 KeyInfoOverlayView()
@@ -171,18 +135,13 @@ struct ContentView: View {
                 AppDataBrowserView(
                     tabSession: filesTabSession,
                     onOpenSettings: openSettings,
-                    onOpenLogs: openLogs
+                    onOpenLogs: {}
                 )
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 FunctionOverlayView()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-        case .search:
-            RepositorySearchView(
-                onOpenSettings: openSettings,
-                onOpenLogs: openLogs
-            )
         }
     }
 
@@ -225,9 +184,6 @@ struct ContentView: View {
         showSettings = true
     }
 
-    private func openLogs() {
-        showLogs = true
-    }
 }
 
 private struct CompactTabLabel: View
@@ -254,33 +210,24 @@ private extension AppSection {
     var titleKey: String {
         switch self {
         case .home: return "tab.home"
-        case .new: return "tab.new"
-        case .sources: return "tab.sources"
         case .installed: return "tab.installed"
         case .files: return "tab.files"
-        case .search: return "tab.search"
         }
     }
 
     var systemImage: String {
         switch self {
         case .home: return "house.fill"
-        case .new: return "clock.fill"
-        case .sources: return "shippingbox.fill"
-        case .installed: return "tray.full.fill"
+        case .installed: return "key.fill"
         case .files: return "wand.and.stars"
-        case .search: return "magnifyingglass"
         }
     }
 
     var displayTitle: String {
         switch self {
         case .home: return "Home"
-        case .new: return "New"
-        case .sources: return "Sources"
         case .installed: return "Key Center"
         case .files: return "Function"
-        case .search: return "Search"
         }
     }
 }
@@ -902,7 +849,7 @@ private struct FunctionOverlayView: View {
             .padding(.vertical, 13)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 142, alignment: .center)
+        .frame(height: 154, alignment: .center)
         .background(Color.black.opacity(0.75))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay {

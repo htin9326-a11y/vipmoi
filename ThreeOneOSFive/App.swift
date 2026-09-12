@@ -11,9 +11,7 @@ struct ThreeOneOSFiveApp: App {
     @StateObject private var patchStore = PatchProjectStore()
     @StateObject private var repositoryStore = PackageRepositoryStore()
     @StateObject private var licenseSession = LicenseSession()
-    @AppStorage(AppLanguage.storageKey) private var languageCode = AppLanguage.vietnamese.rawValue
     @AppStorage("aujunpeak.appearance") private var appearanceMode = "system"
-    @State private var showOnboarding = OnboardingStore.shouldShow()
     @State private var showAttribution = false
     @State private var showLicenseCheck = false
     @State private var licenseCheckSucceeded = false
@@ -22,12 +20,10 @@ struct ThreeOneOSFiveApp: App {
 
     init() {
         setupLogCapture()
-        log("app: 3105 + Aujunpeak VN launching — iOS \(AppInfo.osVersion) (\(AppInfo.osBuild)) \(AppInfo.machineName)")
+        log("app: Aujunpeak launching — iOS \(AppInfo.osVersion) (\(AppInfo.osBuild)) \(AppInfo.machineName)")
     }
 
-    private var language: AppLanguage {
-        AppLanguage(rawValue: languageCode) ?? .vietnamese
-    }
+    private let language: AppLanguage = .vietnamese
 
     private var preferredColorScheme: ColorScheme? {
         switch appearanceMode {
@@ -56,8 +52,6 @@ struct ThreeOneOSFiveApp: App {
                     .environmentObject(licenseSession)
                     .environment(\.appLanguage, language)
                     .environment(\.locale, language.locale)
-                    .opacity(showOnboarding ? 0 : 1)
-                    .allowsHitTesting(!showOnboarding)
 
                 if let notice = licenseSession.failureNotice {
                     LicenseFailureOverlay(notice: notice) {
@@ -75,25 +69,9 @@ struct ThreeOneOSFiveApp: App {
                     .transition(.opacity)
                     .zIndex(120)
                 }
-
-                if showOnboarding {
-                    OnboardingView {
-                        OnboardingStore.markCompleted()
-                        withAnimation(.spring(response: 0.42, dampingFraction: 0.86)) {
-                            showOnboarding = false
-                        }
-                        appState.detectSupport()
-                        checkForUpdate()
-                        Task { await licenseSession.bootstrap() }
-                    }
-                    .environment(\.appLanguage, language)
-                    .environment(\.locale, language.locale)
-                    .transition(.opacity.combined(with: .scale(scale: 0.98)))
-                    .zIndex(1)
-                }
             }
             .preferredColorScheme(preferredColorScheme)
-            .displayIdentityAttribution(isPresented: $showAttribution, enabled: !showOnboarding)
+            .displayIdentityAttribution(isPresented: $showAttribution, enabled: true)
             .sheet(isPresented: $showAttribution) { DisplayAttributionSheet() }
             .alert(item: $updateOffer) { offer in
                 Alert(
@@ -108,7 +86,7 @@ struct ThreeOneOSFiveApp: App {
                 )
             }
             .fullScreenCover(isPresented: Binding(
-                get: { !showOnboarding && licenseSession.requiresActivation },
+                get: { licenseSession.requiresActivation },
                 set: { _ in }
             )) {
                 LicenseActivationView()
@@ -116,14 +94,12 @@ struct ThreeOneOSFiveApp: App {
                     .interactiveDismissDisabled(true)
             }
             .onAppear {
-                if !showOnboarding {
-                    appState.detectSupport()
-                    checkForUpdate()
-                    runLicenseCheck()
-                }
+                appState.detectSupport()
+                checkForUpdate()
+                runLicenseCheck()
             }
             .onChange(of: scenePhase) { phase in
-                guard phase == .active, !showOnboarding else { return }
+                guard phase == .active else { return }
                 appState.detectSupport()
                 Task { await licenseSession.refreshStatus() }
             }

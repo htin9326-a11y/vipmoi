@@ -115,14 +115,16 @@ struct AppLogo: View {
 
     var body: some View {
         Group {
-            if let icon = UIImage(named: "AppIcon60x60")
-                ?? Bundle.main.path(forResource: "AppIcon60x60@2x", ofType: "png").flatMap(UIImage.init(contentsOfFile:))
-                ?? UIImage(named: "AppIcon") {
+            if let logo = UIImage(named: "AujunpeakLogo") {
+                Image(uiImage: logo)
+                    .resizable()
+                    .scaledToFill()
+            } else if let icon = UIImage(named: "AppIcon") {
                 Image(uiImage: icon)
                     .resizable()
                     .scaledToFill()
             } else {
-                Image(systemName: "slider.horizontal.3")
+                Image(systemName: "shield.lefthalf.filled")
                     .font(.title2.weight(.semibold))
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
