@@ -15,7 +15,7 @@
 "common.finish" = "Finish";
 
 "update.title" = "Update available";
-"update.message" = "3105 %@ is available on GitHub.";
+"update.message" = "A new Aujunpeak update is available.";
 "update.agree" = "OK";
 "update.dismiss" = "Don't show again";
 "patch.error.wrong_password" = "Incorrect password.";
@@ -240,7 +240,7 @@
 "accessibility.requesting_access" = "Requesting exploit access";
 "accessibility.open_editor_hint" = "Opens the MobileGestalt feature editor";
 "accessibility.run_exploit_hint" = "Requests write access required by the Gestalt editor";
-"accessibility.open_github" = "Open 3105 on GitHub";
+"accessibility.open_github" = "Open the Aujunpeak download page";
 "accessibility.open_profile" = "Open %@ profile";
 "accessibility.log_entry" = "Log entry %lld: %@";
 

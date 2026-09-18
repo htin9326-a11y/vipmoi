@@ -3,24 +3,20 @@ import ImageIO
 
 
 enum AppTheme {
-    static let accent = Color(
-        uiColor: UIColor { traits in
-            traits.userInterfaceStyle == .dark
-                ? UIColor(red: 1.00, green: 0.64, blue: 0.42, alpha: 1.00)
-                : UIColor(red: 0.85, green: 0.42, blue: 0.20, alpha: 1.00)
-        }
-    )
-    // Aujunpeak visual theme compatibility. These values were present in the
-    // previous Aujunpeak UI and are required by the merged overlay views.
-    static let secondaryAccent = Color(red: 0.28, green: 0.78, blue: 0.96)
-    static let hotPink = Color(red: 0.96, green: 0.32, blue: 0.40)
-    static let darkCanvas = Color(red: 0.035, green: 0.035, blue: 0.075)
-    static let panel = Color(red: 0.06, green: 0.07, blue: 0.11).opacity(0.92)
-    static let panelBorder = Color.white.opacity(0.14)
+    static let accent = Color(red: 0.16, green: 0.42, blue: 0.86)
+    static let secondaryAccent = Color(red: 0.08, green: 0.61, blue: 0.61)
+    static let hotPink = Color(red: 0.90, green: 0.34, blue: 0.48)
+    static let darkCanvas = Color(red: 0.95, green: 0.97, blue: 0.98)
+    static let panel = Color.white
+    static let panelBorder = Color(red: 0.83, green: 0.88, blue: 0.91)
+    static let primaryText = Color(red: 0.08, green: 0.12, blue: 0.18)
+    static let secondaryText = Color(red: 0.38, green: 0.44, blue: 0.50)
+    static let softBlue = Color(red: 0.91, green: 0.95, blue: 1.00)
+    static let softMint = Color(red: 0.90, green: 0.97, blue: 0.96)
     static let contentMaxWidth: CGFloat = 860
     static let compactPageInset: CGFloat = 14
-    static let pageBackground = Color(uiColor: .systemBackground)
-    static let consoleBackground = Color(uiColor: .secondarySystemBackground)
+    static let pageBackground = Color(red: 0.95, green: 0.97, blue: 0.97)
+    static let consoleBackground = Color(red: 0.91, green: 0.94, blue: 0.95)
     static let pageInset: CGFloat = 16
     static let rowIconSize: CGFloat = 17
     static let rowIconFrame: CGFloat = 28
@@ -214,9 +210,9 @@ struct AppGlassPanel<Content: View>: View {
             .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                    .strokeBorder(tint.opacity(0.34), lineWidth: 1)
+                    .strokeBorder(AppTheme.panelBorder, lineWidth: 1)
             }
-            .shadow(color: Color.black.opacity(0.22), radius: 12, y: 6)
+            .shadow(color: Color.black.opacity(0.07), radius: 16, y: 7)
     }
 }
 
@@ -258,21 +254,19 @@ struct AppAnimatedBackground: View {
     var body: some View {
         GeometryReader { proxy in
             ZStack {
-                AppTheme.darkCanvas
-                if let data = backgroundData {
-                    AnimatedGIFView(data: data)
-                        .frame(width: proxy.size.width, height: proxy.size.height)
-                        .opacity(opacity)
-                } else if UIImage(named: "AppBackgroundNeon") != nil {
-                    Image("AppBackgroundNeon")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: proxy.size.width, height: proxy.size.height)
-                        .clipped()
-                        .opacity(opacity)
-                }
+                AppTheme.pageBackground
+                Circle()
+                    .fill(AppTheme.softBlue.opacity(0.72))
+                    .frame(width: min(proxy.size.width * 0.86, 440))
+                    .blur(radius: 30)
+                    .offset(x: proxy.size.width * 0.34, y: -proxy.size.height * 0.33)
+                Circle()
+                    .fill(AppTheme.softMint.opacity(0.76))
+                    .frame(width: min(proxy.size.width * 0.78, 380))
+                    .blur(radius: 34)
+                    .offset(x: -proxy.size.width * 0.40, y: proxy.size.height * 0.36)
                 LinearGradient(
-                    colors: [Color.black.opacity(0.18), Color.black.opacity(0.50), Color.black.opacity(0.86)],
+                    colors: [Color.white.opacity(0.12), Color.clear, Color.white.opacity(0.22)],
                     startPoint: .top,
                     endPoint: .bottom
                 )
@@ -280,13 +274,6 @@ struct AppAnimatedBackground: View {
             .ignoresSafeArea()
         }
         .allowsHitTesting(false)
-    }
-
-    private var backgroundData: Data? {
-        guard let url = Bundle.main.url(forResource: "AppBackground", withExtension: "gif") else {
-            return nil
-        }
-        return try? Data(contentsOf: url)
     }
 }
 

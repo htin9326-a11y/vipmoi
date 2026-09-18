@@ -13,18 +13,18 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>Aujunpeak</string>
+    <string>3105</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.1.1</string>
+    <string>$(MARKETING_VERSION)</string>
     <key>CFBundleVersion</key>
-    <string>7</string>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
     <key>CFBundleDocumentTypes</key>
     <array>
         <dict>
             <key>CFBundleTypeName</key>
-            <string>Aujunpeak Patch Package</string>
+            <string>3105 Patch Package</string>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
             <key>LSHandlerRank</key>
@@ -54,7 +54,7 @@
                 <string>public.data</string>
             </array>
             <key>UTTypeDescription</key>
-            <string>Aujunpeak Patch Package</string>
+            <string>3105 Patch Package</string>
             <key>UTTypeIdentifier</key>
             <string>com.yangjiii.3105.patch-package</string>
             <key>UTTypeTagSpecification</key>
@@ -73,13 +73,13 @@
     <key>UIFileSharingEnabled</key>
     <true/>
     <key>AppReleaseDisplayVersion</key>
-    <string>1.1.1</string>
+    <string>$(MARKETING_VERSION)</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Aujunpeak cần quyền truy cập ảnh để tùy chỉnh hình nền.</string>
+    <string>3105 needs access to photos for wallpaper customization.</string>
     <key>NSDocumentsFolderUsageDescription</key>
-    <string>Aujunpeak cần quyền truy cập tài liệu.</string>
+    <string>3105 needs access to documents.</string>
     <key>UIApplicationSceneManifest</key>
     <dict>
         <key>UIApplicationSupportsMultipleScenes</key>

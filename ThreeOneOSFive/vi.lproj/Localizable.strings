@@ -15,7 +15,7 @@
 "common.finish" = "Hoàn thành";
 
 "update.title" = "Có bản cập nhật";
-"update.message" = "3105 %@ đã có trên GitHub.";
+"update.message" = "Đã có bản cập nhật Aujunpeak mới.";
 "update.agree" = "Đồng ý";
 "update.dismiss" = "Không hiển thị lại";
 "patch.error.wrong_password" = "Sai mật khẩu.";
@@ -240,7 +240,7 @@
 "accessibility.requesting_access" = "Đang yêu cầu quyền exploit";
 "accessibility.open_editor_hint" = "Mở trình chỉnh sửa tính năng MobileGestalt";
 "accessibility.run_exploit_hint" = "Yêu cầu quyền ghi cần thiết cho trình chỉnh sửa Gestalt";
-"accessibility.open_github" = "Mở 3105 trên GitHub";
+"accessibility.open_github" = "Mở trang tải Aujunpeak";
 "accessibility.open_profile" = "Mở hồ sơ của %@";
 "accessibility.log_entry" = "Mục nhật ký %lld: %@";
 

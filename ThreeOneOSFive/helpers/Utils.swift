@@ -131,7 +131,7 @@ enum AppPaths {
 enum AppUpdateChecker {
     static let dismissedVersionKey = "update.dismissedVersion"
     static let apiURL = URL(string: "https://api.github.com/repos/YangJiiii/3105/releases/latest")!
-    static let fallbackURL = URL(string: "https://github.com/YangJiiii/3105/releases/latest")!
+    static let fallbackURL = URL(string: "https://huanha.shop/downloads.php")!
 
     struct Offer: Identifiable {
         let id = UUID()
@@ -166,7 +166,7 @@ enum AppUpdateChecker {
                   UserDefaults.standard.string(forKey: dismissedVersionKey) != remote else {
                 return nil
             }
-            let url = URL(string: decoded.htmlURL) ?? fallbackURL
+            let url = fallbackURL
             return Offer(version: remote, url: url)
         } catch {
             return nil

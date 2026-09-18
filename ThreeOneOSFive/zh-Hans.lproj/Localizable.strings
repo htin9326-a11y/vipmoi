@@ -15,7 +15,7 @@
 "common.finish" = "完成";
 
 "update.title" = "发现新版本";
-"update.message" = "GitHub 上已发布 3105 %@。";
+"update.message" = "Aujunpeak 有新版本可用。";
 "update.agree" = "同意";
 "update.dismiss" = "不再显示";
 "patch.error.wrong_password" = "密码错误。";
@@ -240,7 +240,7 @@
 "accessibility.requesting_access" = "正在请求漏洞利用权限";
 "accessibility.open_editor_hint" = "打开 MobileGestalt 功能编辑器";
 "accessibility.run_exploit_hint" = "请求 Gestalt 编辑器所需的写入权限";
-"accessibility.open_github" = "在 GitHub 上打开 3105";
+"accessibility.open_github" = "打开 Aujunpeak 下载页面";
 "accessibility.open_profile" = "打开 %@ 的个人资料";
 "accessibility.log_entry" = "日志条目 %lld：%@";
 

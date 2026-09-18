@@ -522,7 +522,7 @@ private struct RepositoryFeaturedCard: View {
                     placeholder
                 } else {
                     ProgressView()
-                        .tint(.white)
+                        .tint(AppTheme.accent)
                 }
             }
             .clipped()
@@ -534,7 +534,7 @@ private struct RepositoryFeaturedCard: View {
             ? "photo.fill"
             : "shippingbox.fill")
             .font(.system(size: 30, weight: .medium))
-            .foregroundStyle(.white.opacity(0.82))
+            .foregroundStyle(AppTheme.secondaryText)
     }
 }
 

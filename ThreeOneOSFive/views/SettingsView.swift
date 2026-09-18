@@ -8,7 +8,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                AppTheme.darkCanvas.ignoresSafeArea()
+                AppTheme.pageBackground.ignoresSafeArea()
 
                 ScrollView {
                     VStack(spacing: 20) {
@@ -17,10 +17,10 @@ struct SettingsView: View {
                         VStack(spacing: 6) {
                             Text("Aujunpeak VN")
                                 .font(.system(size: 26, weight: .black, design: .rounded))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(AppTheme.primaryText)
                             Text("Hà Văn Huấn")
                                 .font(.headline)
-                                .foregroundStyle(.white.opacity(0.78))
+                                .foregroundStyle(AppTheme.secondaryText)
                         }
 
                         AppGlassPanel(cornerRadius: 22, tint: AppTheme.secondaryAccent) {
@@ -31,7 +31,7 @@ struct SettingsView: View {
                                 InfoRow(title: "Thương hiệu", value: "Aujunpeak VN")
                                 InfoRow(title: "Quản trị", value: "Hà Văn Huấn")
                             }
-                            .foregroundStyle(.white)
+                            .foregroundStyle(AppTheme.primaryText)
                             .padding(18)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         }
@@ -45,7 +45,7 @@ struct SettingsView: View {
                                         .font(.headline.weight(.bold))
                                     Text("0833 091 543")
                                         .font(.subheadline)
-                                        .foregroundStyle(.white.opacity(0.78))
+                                        .foregroundStyle(AppTheme.secondaryText)
                                 }
                                 Spacer()
                                 Image(systemName: "arrow.up.right")
@@ -90,10 +90,10 @@ private struct InfoRow: View {
     var body: some View {
         HStack(spacing: 12) {
             Text(title)
-                .foregroundStyle(.white.opacity(0.62))
+                .foregroundStyle(AppTheme.secondaryText)
             Spacer()
             Text(value)
-                .foregroundStyle(.white)
+                .foregroundStyle(AppTheme.primaryText)
                 .multilineTextAlignment(.trailing)
         }
         .font(.subheadline.weight(.semibold))

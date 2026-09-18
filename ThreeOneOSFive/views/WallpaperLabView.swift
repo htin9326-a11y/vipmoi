@@ -216,7 +216,7 @@ struct WallpaperLabView: View {
     private var busyOverlay: some View {
         if isBusy {
             ZStack {
-                Color.black.opacity(0.12).ignoresSafeArea()
+                AppTheme.pageBackground.ignoresSafeArea()
                 VStack(spacing: 12) {
                     ProgressView()
                     Text(language.text(operationKey))
@@ -529,7 +529,7 @@ struct InstalledWallpaperPackageDetailView: View {
     private var busyOverlay: some View {
         if isBusy {
             ZStack {
-                Color.black.opacity(0.12).ignoresSafeArea()
+                AppTheme.pageBackground.ignoresSafeArea()
                 VStack(spacing: 12) {
                     ProgressView()
                     Text(language.text(operationKey))
@@ -751,7 +751,7 @@ struct WallpaperResetSettingsView: View {
     private var busyOverlay: some View {
         if isBusy {
             ZStack {
-                Color.black.opacity(0.12).ignoresSafeArea()
+                AppTheme.pageBackground.ignoresSafeArea()
                 VStack(spacing: 12) {
                     ProgressView()
                     Text(language.text(operationKey))

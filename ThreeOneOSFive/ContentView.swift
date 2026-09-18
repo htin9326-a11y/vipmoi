@@ -244,13 +244,13 @@ private struct AppSideNavigation: View {
                     Button { onSelect(section) } label: {
                         Image(systemName: section.systemImage)
                             .font(.system(size: 17, weight: .semibold))
-                            .foregroundStyle(selectedTab == section.rawValue ? AppTheme.secondaryAccent : .white.opacity(0.78))
+                            .foregroundStyle(selectedTab == section.rawValue ? AppTheme.accent : AppTheme.secondaryText)
                             .frame(width: 38, height: 38)
                             .background(
-                                selectedTab == section.rawValue ? AppTheme.secondaryAccent.opacity(0.18) : Color.black.opacity(0.48),
+                                selectedTab == section.rawValue ? AppTheme.softBlue : AppTheme.panel,
                                 in: Circle()
                             )
-                            .overlay { Circle().stroke(Color.white.opacity(0.12), lineWidth: 1) }
+                            .overlay { Circle().stroke(AppTheme.panelBorder, lineWidth: 1) }
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel(section.displayTitle)
@@ -263,18 +263,18 @@ private struct AppSideNavigation: View {
             } label: {
                 Image(systemName: isExpanded ? "chevron.left" : "chevron.right")
                     .font(.system(size: 14, weight: .bold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(AppTheme.primaryText)
                     .frame(width: 34, height: 34)
                     .background(AppTheme.accent.opacity(0.88), in: Circle())
-                    .overlay { Circle().stroke(Color.white.opacity(0.18), lineWidth: 1) }
+                    .overlay { Circle().stroke(Color.white.opacity(0.75), lineWidth: 1) }
             }
             .buttonStyle(.plain)
             .accessibilityLabel(isExpanded ? "Đóng menu" : "Mở menu")
         }
         .padding(6)
-        .background(Color.black.opacity(isExpanded ? 0.32 : 0.12), in: Capsule())
-        .overlay { Capsule().stroke(Color.white.opacity(0.10), lineWidth: 1) }
-        .shadow(color: Color.black.opacity(0.28), radius: 10, y: 4)
+        .background(AppTheme.panel.opacity(0.96), in: Capsule())
+        .overlay { Capsule().stroke(AppTheme.panelBorder, lineWidth: 1) }
+        .shadow(color: Color.black.opacity(0.08), radius: 12, y: 5)
     }
 }
 
@@ -344,12 +344,12 @@ private struct DashboardView: View {
                         .frame(height: 188)
                         .clipped()
                 } else {
-                    LinearGradient(colors: [Color.blue, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing)
+                    LinearGradient(colors: [AppTheme.softBlue, AppTheme.softMint], startPoint: .topLeading, endPoint: .bottomTrailing)
                         .frame(height: 188)
                 }
 
                 LinearGradient(
-                    colors: [Color.clear, Color.black.opacity(0.84)],
+                    colors: [Color.clear, AppTheme.primaryText.opacity(0.74)],
                     startPoint: .top,
                     endPoint: .bottom
                 )
@@ -357,27 +357,27 @@ private struct DashboardView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text("AUJUNPEAK VN")
                         .font(.system(size: 24, weight: .black, design: .rounded))
-                        .foregroundStyle(.white)
+                        .foregroundStyle(AppTheme.primaryText)
                     Text("Panel game • hiệu ứng sáng • nhấn để mở huanha.shop")
                         .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(.white.opacity(0.82))
+                        .foregroundStyle(AppTheme.secondaryText)
                     HStack(spacing: 8) {
                         Label("Shop chính thức", systemImage: "checkmark.seal.fill")
                         Label("24/7", systemImage: "bolt.fill")
                     }
                     .font(.caption.weight(.bold))
-                    .foregroundStyle(.white.opacity(0.92))
+                    .foregroundStyle(AppTheme.accent)
                 }
                 .padding(16)
             }
             .frame(maxWidth: .infinity)
-            .background(Color.black)
+            .background(AppTheme.panel)
             .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
             .overlay {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
-                    .strokeBorder(LinearGradient(colors: [Color.cyan.opacity(0.75), Color.blue.opacity(0.18)], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.2)
+                    .strokeBorder(LinearGradient(colors: [AppTheme.accent.opacity(0.46), AppTheme.secondaryAccent.opacity(0.18)], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1.2)
             }
-            .shadow(color: Color.blue.opacity(0.24), radius: 22, y: 10)
+            .shadow(color: AppTheme.accent.opacity(0.10), radius: 22, y: 10)
         }
         .buttonStyle(.plain)
     }
@@ -463,10 +463,10 @@ private struct MiniInfoChip: View {
         }
         .padding(14)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.white.opacity(0.055), in: RoundedRectangle(cornerRadius: 18, style: .continuous))
+        .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .strokeBorder(Color.white.opacity(0.05), lineWidth: 1)
+                .strokeBorder(AppTheme.panelBorder, lineWidth: 1)
         }
     }
 }
@@ -482,13 +482,13 @@ private struct HomeGameCard: View {
             VStack(alignment: .leading, spacing: 4) {
                 Text(game.title)
                     .font(.subheadline.weight(.bold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(AppTheme.primaryText)
                     .lineLimit(1)
                     .minimumScaleFactor(0.82)
                     .allowsTightening(true)
                 Text(game.bundleID)
                     .font(.caption2.monospaced())
-                    .foregroundStyle(.white.opacity(0.58))
+                    .foregroundStyle(AppTheme.secondaryText)
                     .lineLimit(2)
                     .truncationMode(.middle)
                 HStack(spacing: 6) {
@@ -497,7 +497,7 @@ private struct HomeGameCard: View {
                         .lineLimit(1)
                 }
                 .font(.caption2.weight(.bold))
-                .foregroundStyle(isSelected ? Color.orange : Color.white.opacity(0.72))
+                .foregroundStyle(isSelected ? AppTheme.accent : AppTheme.secondaryText)
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
         }
@@ -506,8 +506,8 @@ private struct HomeGameCard: View {
         .background(
             LinearGradient(
                 colors: isSelected
-                    ? [Color.orange.opacity(0.30), Color.red.opacity(0.16)]
-                    : [Color.white.opacity(0.12), Color.white.opacity(0.055)],
+                    ? [AppTheme.softBlue, AppTheme.softMint]
+                    : [AppTheme.panel, AppTheme.consoleBackground],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             ),
@@ -515,9 +515,9 @@ private struct HomeGameCard: View {
         )
         .overlay {
             RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .strokeBorder(isSelected ? Color.orange.opacity(0.55) : Color.white.opacity(0.12), lineWidth: 1)
+                .strokeBorder(isSelected ? AppTheme.accent.opacity(0.48) : AppTheme.panelBorder, lineWidth: 1)
         }
-        .shadow(color: Color.black.opacity(0.18), radius: 8, y: 4)
+        .shadow(color: Color.black.opacity(0.06), radius: 8, y: 4)
     }
 }
 
@@ -570,9 +570,9 @@ private struct HomeAdminOverlayCard: View {
         .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .strokeBorder(AppTheme.secondaryAccent.opacity(0.30), lineWidth: 1)
+                .strokeBorder(AppTheme.panelBorder, lineWidth: 1)
         }
-        .shadow(color: Color.black.opacity(0.24), radius: 10, y: 5)
+        .shadow(color: Color.black.opacity(0.07), radius: 10, y: 5)
     }
 }
 
@@ -617,7 +617,7 @@ private struct FunctionOverlayView: View {
             ZStack {
                 // Opaque base layer prevents the File/Data Browser from
                 // showing through below the Function content.
-                Color.black
+                AppTheme.pageBackground
                     .ignoresSafeArea()
 
                 AppNeonBackground()
@@ -652,7 +652,7 @@ private struct FunctionOverlayView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.black.ignoresSafeArea())
+            .background(AppTheme.pageBackground.ignoresSafeArea())
             .navigationTitle("Function")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -717,16 +717,16 @@ private struct FunctionOverlayView: View {
                     .contentShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                     .background(
                         selectedGameKey == game.gameKey
-                            ? Color.orange.opacity(0.18)
-                            : Color.white.opacity(0.05),
+                            ? AppTheme.softBlue
+                            : AppTheme.panel,
                         in: RoundedRectangle(cornerRadius: 15, style: .continuous)
                     )
                     .overlay {
                         RoundedRectangle(cornerRadius: 15, style: .continuous)
                             .strokeBorder(
                                 selectedGameKey == game.gameKey
-                                    ? Color.orange.opacity(0.42)
-                                    : Color.white.opacity(0.07),
+                                    ? AppTheme.accent.opacity(0.42)
+                                    : AppTheme.panelBorder,
                                 lineWidth: 1
                             )
                     }
@@ -751,10 +751,10 @@ private struct FunctionOverlayView: View {
                 }
                 .padding(16)
                 .frame(maxWidth: .infinity)
-                .background(Color.white.opacity(0.05), in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
                 .overlay {
                     RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .strokeBorder(Color.white.opacity(0.06), lineWidth: 1)
+                        .strokeBorder(AppTheme.panelBorder, lineWidth: 1)
                 }
             } else {
                 ForEach(visibleSwitches) { item in
@@ -791,14 +791,14 @@ private struct FunctionOverlayView: View {
                     .clipped()
             } else {
                 LinearGradient(
-                    colors: [Color(red: 0.02, green: 0.12, blue: 0.18), Color.black],
+                    colors: [AppTheme.accent.opacity(0.92), AppTheme.secondaryAccent.opacity(0.75)],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
             }
 
             LinearGradient(
-                colors: [Color.black.opacity(0.00), Color.black.opacity(0.24), Color.black.opacity(0.82)],
+                colors: [Color.black.opacity(0.00), Color.black.opacity(0.18), Color.black.opacity(0.68)],
                 startPoint: .top,
                 endPoint: .bottom
             )
@@ -849,14 +849,14 @@ private struct FunctionOverlayView: View {
             .padding(.vertical, 13)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 154, alignment: .center)
-        .background(Color.black.opacity(0.75))
+        .frame(height: 142, alignment: .center)
+        .background(AppTheme.primaryText.opacity(0.64))
         .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .strokeBorder(Color.cyan.opacity(0.38), lineWidth: 1)
+                .strokeBorder(AppTheme.accent.opacity(0.30), lineWidth: 1)
         }
-        .shadow(color: Color.cyan.opacity(0.10), radius: 10, y: 5)
+        .shadow(color: AppTheme.accent.opacity(0.10), radius: 10, y: 5)
     }
 
     private var functionBannerData: Data? {
@@ -901,10 +901,10 @@ private struct FunctionOverlayView: View {
         .padding(.vertical, 9)
         .frame(maxWidth: .infinity, minHeight: 58, alignment: .leading)
         .clipped()
-        .background(Color.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .strokeBorder(Color.red.opacity(0.16), lineWidth: 1)
+                .strokeBorder(AppTheme.panelBorder, lineWidth: 1)
         }
     }
 
@@ -937,7 +937,11 @@ private struct FunctionOverlayView: View {
         .padding(.horizontal, 11)
         .padding(.vertical, 9)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.white.opacity(0.07), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay {
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .strokeBorder(AppTheme.panelBorder, lineWidth: 1)
+        }
     }
 }
 
@@ -1015,7 +1019,7 @@ private struct RemoteFunctionSwitchCard: View {
         .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .strokeBorder(isOn ? Color.red.opacity(0.42) : Color.white.opacity(0.10), lineWidth: 1)
+                .strokeBorder(isOn ? AppTheme.accent.opacity(0.42) : AppTheme.panelBorder, lineWidth: 1)
         }
         .opacity(item.enabled ? 1 : 0.65)
         .onAppear { isOn = item.enabled && LocalRemoteSwitchService.isEnabled(item) }
@@ -1368,11 +1372,7 @@ private struct KeyInfoOverlayView: View {
                 RoundedRectangle(cornerRadius: 24, style: .continuous)
                     .fill(
                         LinearGradient(
-                            colors: [
-                                Color(red: 0.12, green: 0.05, blue: 0.20),
-                                Color(red: 0.04, green: 0.10, blue: 0.22),
-                                Color.black
-                            ],
+                            colors: [AppTheme.panel, AppTheme.softBlue],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
@@ -1385,12 +1385,12 @@ private struct KeyInfoOverlayView: View {
                         VStack(alignment: .leading, spacing: 2) {
                             Text("AUJUNPEAK VN")
                                 .font(.system(size: 18, weight: .black, design: .rounded))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(AppTheme.primaryText)
                                 .lineLimit(1)
                             Text("LICENSE CENTER")
                                 .font(.caption2.weight(.bold))
                                 .tracking(1.4)
-                                .foregroundStyle(.white.opacity(0.62))
+                                .foregroundStyle(AppTheme.secondaryText)
                         }
 
                         Spacer()
@@ -1404,12 +1404,12 @@ private struct KeyInfoOverlayView: View {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("KEY INFORMATION")
                                 .font(.system(size: 20, weight: .black, design: .rounded))
-                                .foregroundStyle(.white)
+                                .foregroundStyle(AppTheme.primaryText)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.76)
                             Text("Thông tin kích hoạt và thiết bị")
                                 .font(.caption)
-                                .foregroundStyle(.white.opacity(0.68))
+                                .foregroundStyle(AppTheme.secondaryText)
                                 .lineLimit(2)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
@@ -1442,7 +1442,7 @@ private struct KeyInfoOverlayView: View {
                 )
 
                 Rectangle()
-                    .fill(Color.white.opacity(0.12))
+                    .fill(AppTheme.panelBorder)
                     .frame(width: 1, height: 30)
 
                 InfoHeroStat(
@@ -1452,7 +1452,7 @@ private struct KeyInfoOverlayView: View {
                 )
 
                 Rectangle()
-                    .fill(Color.white.opacity(0.12))
+                    .fill(AppTheme.panelBorder)
                     .frame(width: 1, height: 30)
 
                 InfoHeroStat(
@@ -1462,7 +1462,7 @@ private struct KeyInfoOverlayView: View {
                 )
             }
             .padding(.vertical, 14)
-            .background(Color.black.opacity(0.24))
+            .background(AppTheme.consoleBackground)
         }
         .frame(maxWidth: .infinity)
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
@@ -1470,14 +1470,14 @@ private struct KeyInfoOverlayView: View {
             RoundedRectangle(cornerRadius: 24, style: .continuous)
                 .strokeBorder(
                     LinearGradient(
-                        colors: [AppTheme.accent.opacity(0.62), Color.blue.opacity(0.32), Color.white.opacity(0.10)],
+                        colors: [AppTheme.accent.opacity(0.52), AppTheme.secondaryAccent.opacity(0.24), AppTheme.panelBorder],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     ),
                     lineWidth: 1
                 )
         }
-        .shadow(color: Color.black.opacity(0.22), radius: 10, y: 5)
+        .shadow(color: Color.black.opacity(0.07), radius: 14, y: 6)
     }
 
     private var keyDetails: some View {
@@ -1539,7 +1539,7 @@ private struct KeyInfoOverlayView: View {
             Link(destination: zaloURL) {
                 Label("Liên hệ Admin qua Zalo", systemImage: "message.fill")
                     .font(.subheadline.weight(.semibold))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(AppTheme.primaryText)
                     .frame(maxWidth: .infinity)
                     .frame(height: 40)
                     .background(LinearGradient(colors: [Color.blue, Color.cyan], startPoint: .leading, endPoint: .trailing), in: RoundedRectangle(cornerRadius: 12, style: .continuous))
@@ -1597,13 +1597,13 @@ private struct InfoHeroStat: View {
                 .foregroundStyle(AppTheme.accent)
             Text(value)
                 .font(.caption.weight(.bold))
-                .foregroundStyle(.white)
+                .foregroundStyle(AppTheme.primaryText)
                 .lineLimit(1)
                 .minimumScaleFactor(0.72)
             Text(title)
                 .font(.system(size: 9, weight: .bold))
                 .tracking(0.7)
-                .foregroundStyle(.white.opacity(0.52))
+                    .foregroundStyle(AppTheme.secondaryText)
         }
         .frame(maxWidth: .infinity)
     }
@@ -1634,7 +1634,7 @@ private struct InfoCard<Content: View>: View {
                 Text(title)
                     .font(.caption.weight(.bold))
                     .tracking(0.7)
-                    .foregroundStyle(.white.opacity(0.72))
+                    .foregroundStyle(AppTheme.secondaryText)
             }
             content
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -1643,7 +1643,7 @@ private struct InfoCard<Content: View>: View {
         .background(AppTheme.panel, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: 18, style: .continuous)
-                .strokeBorder(Color.white.opacity(0.13), lineWidth: 1)
+                .strokeBorder(AppTheme.panelBorder, lineWidth: 1)
         }
         .overlay(alignment: .leading) {
             Capsule()
@@ -1651,7 +1651,7 @@ private struct InfoCard<Content: View>: View {
                 .frame(width: 3)
                 .padding(.vertical, 16)
         }
-        .shadow(color: Color.black.opacity(0.22), radius: 10, y: 5)
+        .shadow(color: Color.black.opacity(0.07), radius: 12, y: 6)
     }
 }
 
@@ -1688,7 +1688,7 @@ private struct GameIconView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .fill(Color.white.opacity(0.06))
+                .fill(AppTheme.consoleBackground)
 
             if let url = normalizedRemoteURL {
                 AsyncImage(url: url, transaction: Transaction(animation: .easeInOut(duration: 0.18))) { phase in
@@ -1719,7 +1719,7 @@ private struct GameIconView: View {
         .clipShape(RoundedRectangle(cornerRadius: cornerRadius, style: .continuous))
         .overlay {
             RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-                .strokeBorder(Color.white.opacity(0.08), lineWidth: 1)
+                .strokeBorder(AppTheme.panelBorder, lineWidth: 1)
         }
     }
 
@@ -1732,7 +1732,7 @@ private struct GameIconView: View {
         } else {
             Image(systemName: "gamecontroller.fill")
                 .font(.system(size: size * 0.35, weight: .bold))
-                .foregroundStyle(.white.opacity(0.8))
+                .foregroundStyle(AppTheme.secondaryText)
         }
     }
 
