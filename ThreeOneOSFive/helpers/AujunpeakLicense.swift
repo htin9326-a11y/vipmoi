@@ -634,6 +634,7 @@ struct LicenseActivationView: View {
                         deviceCard
                         socialLinks
                     }
+                    }
                     .frame(maxWidth: .infinity, alignment: .topLeading)
                     .padding(.horizontal, 22)
                     .padding(.top, 28)
