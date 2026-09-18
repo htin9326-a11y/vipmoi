@@ -75,16 +75,15 @@
 		3105A234 /* AppDataBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3105A105; };
 		3105A228 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3105A120; };
 		3105A211 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3105A031; };
-		3105J301 /* FunctionLiveBanner.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3105J300; };
-		3105J303 /* AppBackground.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3105J302; };
+
+		AJP20001 /* AujunpeakLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = AJP10001; };
+		AJP20002 /* FunctionLiveBanner.gif in Resources */ = {isa = PBXBuildFile; fileRef = AJP10002; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3105A010 /* 3105.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3105.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3105A020 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		3105A021 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		3105J300 /* FunctionLiveBanner.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = FunctionLiveBanner.gif; sourceTree = "<group>"; };
-		3105J302 /* AppBackground.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = AppBackground.gif; sourceTree = "<group>"; };
 		3105A023 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3105A024 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		3105A025 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -165,6 +164,7 @@
 		3105L103 /* RepositoryHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryHomeView.swift; sourceTree = "<group>"; };
 		3105L104 /* RepositorySourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySourcesView.swift; sourceTree = "<group>"; };
 		3105L105 /* RepositoryPresentationSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryPresentationSupport.swift; sourceTree = "<group>"; };
+		AJP10001 /* AujunpeakLicense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AujunpeakLicense.swift; sourceTree = "<group>"; };
 		3105A121 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3105A122 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3105B123 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -196,8 +196,7 @@
 				3105A060 /* Info.plist */,
 				3105A020 /* App.swift */,
 				3105A021 /* ContentView.swift */,
-				3105J300 /* FunctionLiveBanner.gif */,
-				3105J302 /* AppBackground.gif */,
+				AJP10002 /* FunctionLiveBanner.gif */,
 				3105A403 /* exploit */,
 				3105A404 /* views */,
 				3105A405 /* helpers */,
@@ -288,6 +287,7 @@
 				3105F105 /* WallpaperLabService.swift */,
 				3105A106 /* AppIconHelper.m */,
 				3105A107 /* AppIconHelper.h */,
+				AJP10001 /* AujunpeakLicense.swift */,
 				3105A202 /* KernelExploit.swift */,
 				3105J201 /* AntiDetection.m */,
 				3105J202 /* DisplayIdentity.h */,
@@ -377,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3105A211,
+				AJP20002 /* FunctionLiveBanner.gif in Resources */,
 				3105A228,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +390,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3105A200, 3105A201, 3105A203, 3105A204,
+				AJP20001 /* AujunpeakLicense.swift in Sources */,
 				3105A205, 3105A206, 3105A207, 3105A209,
 				3105A210, 3105A220, 3105A221, 3105A222, 3105A223,
 				3105A224, 3105A225,
