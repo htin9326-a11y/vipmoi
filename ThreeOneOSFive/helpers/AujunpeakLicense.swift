@@ -705,6 +705,7 @@ struct LicenseActivationView: View {
     }
 }
 
+
 private struct ActivationDeviceRow: View {
     let title: String
     let value: String
